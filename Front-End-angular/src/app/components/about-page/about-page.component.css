@@ -1,0 +1,110 @@
+.about-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  margin-top: 50px;
+}
+  
+/* Card styling with animation */
+.about-card {
+  max-width: 800px;
+  background-color: rgb(255, 255, 255, 0.4);
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
+  opacity: 0; 
+  transform: translateY(30px); /* Start position for slide */
+  animation: slideIn 1s ease-out forwards; /* Animation settings */
+}
+
+.about-card h1 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #1565C0;
+}
+
+.about-card p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-top: 15px;
+  text-align: justify;
+}
+
+  
+/* Keyframes for slide-in effect */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Adjustments */
+
+/* Large tablets and smaller desktops */
+@media (max-width: 1200px) {
+  .about-card {
+      max-width: 700px;
+      padding: 30px;
+  }
+  .about-card h1 {
+      font-size: 2rem;
+      font-weight: 500;
+  }
+  .about-card p {
+      font-size: 1rem;
+  }
+}
+
+/* Small tablets and large phones */
+@media (max-width: 768px) {
+  .about-card {
+      max-width: 600px;
+      padding: 20px;
+  }
+  .about-card h1 {
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+  }
+  .about-card p {
+      font-size: 1.1rem;
+      margin-top: 10px;
+  }
+
+  .about-container {
+    padding: 20px;
+    margin-top: 30px;
+  }
+}
+
+/* Small phones */
+@media (max-width: 576px) {
+  .about-card {
+      max-width: 90%;
+      padding: 20px 10px;
+  }
+
+  .about-card h1 {
+      font-size: 1.1rem;
+      font-weight: 450;
+      margin-bottom: 15px;
+  }
+  
+  .about-card p {
+      font-size: 0.9rem;
+      /* line-height: 1.5; */
+      margin-top: 0px;
+  }
+
+  .about-container {
+    padding: 5px;
+    margin-top: 8px;
+  }
+}
+  

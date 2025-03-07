@@ -1,0 +1,45 @@
+<div class="container-fluid mt-5 pt-5 form-container animate-slide">
+    <h4 class="mb-4 text-center">Ανάλυση Πληρωμών</h4>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="d-flex flex-column modern-form">
+        <!-- ΑΦΜ Προμηθευτή -->
+        <div class="form-group mb-4">
+            <label for="vat">ΑΦΜ Προμηθευτή <span class="text-danger">*</span></label>
+            <input type="text" id="vat" class="form-control rounded-input" formControlName="vat" aria-describedby="vatHelp" placeholder="Πληκτρολογήστε ΑΦΜ" required aria-required="true">
+            <small id="vatHelp" class="form-text d-flex">Το ΑΦΜ πρέπει αποτελείται από 9 χαρακτήρες</small>
+        </div>
+
+        <!-- Κωδικός Προμηθευτή -->
+        <div class="form-group mb-4">
+            <label for="sapNumber">Κωδικός Προμηθευτή <span class="text-danger">*</span></label>
+            <input type="text" id="sapNumber" class="form-control rounded-input" formControlName="sapNumber" aria-describedby="codeHelp" placeholder="Πληκτρολογήστε τον μοναδικό κωδικό προμηθευτή" required aria-required="true">
+            <small id="codeHelp" class="form-text d-flex">Ο μοναδικός κωδικός προμηθευτή αποτελείται από 10 χαρακτήρες</small>
+        </div>
+
+        <!-- Έτος Πληρωμών (Δυναμική Λίστα) -->
+        <div class="form-group mb-4">
+            <label class="me-2" for="year">Έτος Πληρωμών <span class="text-danger">*</span></label>
+            <select id="year" class="custom-select rounded-input px-3" formControlName="year">
+                <option *ngFor="let y of years" [value]="y">{{ y }}</option>
+            </select>
+        </div>
+
+        <!-- Αριθμός Εντάλματος -->
+        <div class="form-group mb-4">
+            <label for="entalma">Αριθμός Εντάλματος 251ΓΝΑ</label>
+            <input type="text" id="entalma" class="form-control rounded-input" formControlName="entalma" placeholder="Πληκτρολογήστε ΧΕΠ">
+            <small class="form-text d-flex">Αφήστε το κενό αν δεν το γνωρίζετε</small>
+        </div>
+
+        <!-- Υποβολή -->
+        <button type="submit" class="btn btn-primary submit-button" aria-label="Submit Form" [disabled]="!form.valid">Ανάλυση Πληρωμών</button>
+        <p class="mt-2 mandatory-field"><span class="text-danger">*</span> Υποχρεωτικά πεδία</p>
+
+        <!-- Μήνυμα σε περίπτωση που δεν βρεθούν αποτελέσματα -->
+        <div *ngIf="noResults" class="alert alert-danger mt-3 animate-slide" aria-live="polite">
+            {{ noResultsMessage }}
+        </div>
+    </form>
+</div>
+
+

@@ -1,0 +1,220 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-family: 'Poppins', Arial, sans-serif;
+}
+  
+.hero {
+  position: relative;
+  width: 60%;
+  height: 43vh; /* Full viewport height */
+  background: url('https://source.unsplash.com/1600x900/?medical') center center/cover no-repeat; /* Background image */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  }
+  
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(21, 101, 192, 0.75); /* Gradient overlay for readability */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+  
+.hero-content {
+  text-align: center;
+  color: #fff;
+  max-width: 800px;
+  padding: 20px;
+  animation: float 3s ease-in-out infinite; /* Floating animation */
+  font-family: 'Montserrat', 'Nunito', Arial, sans-serif;
+}
+  
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+  
+.hero-text {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 20px;
+  font-family: 'Nunito', Arial, sans-serif;
+}
+  
+.cta-button {
+  padding: 12px 24px;
+  background-color: #FFDD57; /* Soft yellow */
+  color: #333; /* Dark text for readability */
+  font-weight: 600;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+  
+.cta-button:hover {
+  background-color: #FFD200;
+}
+  
+  
+/* Overview and Highlight sections */
+.overview, .highlight {
+  text-align: center;
+  max-width: 800px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+  
+.overview h2, .highlight h3 {
+  color: #4B77BE;
+  font-weight: 600;
+}
+  
+.overview p, .highlight p {
+  color: #333;
+  font-weight: 350;
+  line-height: 1.6;
+  font-size: 1.1rem;
+  margin-top: 10px;
+}
+
+/* Apply slide-in animation to elements with animate-slide class */
+.animate-slide {
+  opacity: 0; /* Initially hidden */
+  transform: translateY(30px); /* Start position for slide */
+  animation: slideIn 1s ease-out forwards; /* Animation settings */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+  .hero {
+      width: 80%; /* Adjust width */
+      height: 40vh;
+  }
+  .hero-content {
+      max-width: 600px;
+  }
+  .hero h1 {
+      font-size: 2rem;
+  }
+  .hero-text {
+      font-size: 1.2rem;
+  }
+  .cta-button {
+      padding: 10px 20px;
+  }
+}
+
+/* Small tablets and large phones */
+@media (max-width: 768px) {
+  .hero {
+      width: 100%; /* Full width for small devices */
+      height: 35vh;
+  }
+  .hero-content {
+      max-width: 500px;
+      padding: 15px;
+  }
+  .hero h1 {
+      font-size: 1.5rem;
+  }
+  .hero-text {
+      font-size: 1.1rem;
+  }
+  .cta-button {
+      padding: 8px 16px;
+      font-size: 1rem;
+  }
+
+  .overview p, .highlight p {
+    font-weight: 250;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    margin-top: 10px;
+  }
+
+  .overview h2 {
+    font-size: 1.9rem;
+    font-weight: 550;
+  }
+
+  .highlight h3 {
+    font-size: 1.7rem;
+    font-weight: 550;
+  }
+}
+
+/* Small phones */
+@media (max-width: 576px) {
+  .hero {
+      height: 40vh;
+  }
+  .hero-content {
+      max-width: 450px;
+      padding: 10px;
+  }
+  .hero h1 {
+      font-size: 1.3rem;
+  }
+  .hero-text {
+      font-size: 1rem;
+  }
+  .cta-button {
+      padding: 5px 12px;
+      font-size: 0.9rem;
+  }
+
+  .overview, .highlight {
+    margin-top: 20px;
+    margin-bottom: 1px;
+  }
+
+  .overview p, .highlight p {
+    font-weight: 250;
+    line-height: 1.6;
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+
+  .overview h2 {
+    font-size: 1.8rem;
+    font-weight: 450;
+  }
+
+  .highlight h3 {
+    font-size: 1.5rem;
+    font-weight: 450;
+  }
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+  
+  

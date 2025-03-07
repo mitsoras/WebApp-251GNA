@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-xl my-color">
+    
+  <div class="container-fluid">
+    <div class="d-flex align-items-center">
+      <img src="../../../assets/251GNA (2).png" alt="Logo" class="logo">
+      <a class="navbar-brand ms-2 text-wrap" routerLink="/home" [routerLinkActive]="['active']">
+        <span class="text-light brand-title">251 ΓΕΝΙΚΟ ΝΟΣΟΚΟΜΕΙΟ ΑΕΡΟΠΟΡΙΑΣ</span>
+        <span class="d-block text-light brand-subtitle">ΔΙΕΥΘΥΝΣΗ ΟΙΚΟΝΟΜΙΚΩΝ ΥΠΗΡΕΣΙΩΝ</span>
+      </a>
+    </div>
+      
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="!isNavbarCollapsed" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end my-2 fs-6" [ngClass]="{ 'show': !isNavbarCollapsed }" id="navbarNav">
+      <ul class="navbar-nav" (click)="closeNavbar()">
+        <li class="nav-item mx-3">
+          <a class="nav-link my-btn" routerLink="/about" [routerLinkActive] = "['active']" aria-current="page">Σχετικά</a>
+        </li>
+        <li class="nav-item mx-3">
+          <a class="nav-link my-btn" routerLink="/announcements" [routerLinkActive] = "['active']" aria-current="page">Ανακοινώσεις</a>
+        </li>
+        <li class="nav-item mx-3">
+          <a class="nav-link my-btn" routerLink="/search-form" [routerLinkActive] = "['active']" aria-current="page">Ανάλυση Πληρωμών</a>
+        </li>
+        <li class="nav-item mx-3">
+          <a class="nav-link my-btn" routerLink="/contact" [routerLinkActive] = "['active']" aria-current="page">Επικοινωνία</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

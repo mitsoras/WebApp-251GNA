@@ -1,0 +1,122 @@
+<div class="container my-4 animate-slide">
+  <div class="card">
+    <div class="card-body">
+      <ul class="list-unstyled mb-0">
+        <li class="d-flex align-items-start mb-3">
+          <span class="text-primary me-2">•</span>
+          <span>Οι πληρωμές των ΧΕΠ που ανήκουν στους φορείς 7000 και 7950 εξοφλούνται απευθείας από το 251ΓΝΑ.</span>
+        </li>
+        <li class="d-flex align-items-start mb-3">
+          <span class="text-primary me-2">•</span>
+          <span>Οι πληρωμές των ΧΕΠ που ανήκουν στον φορέα 7900 εξοφλούνται από το Δημόσιο Στρατιωτικό Ταμείο (ΔΣΤ), και η εμφανιζόμενη ημερομηνία εξόφλησης στον πίνακα μπορεί να είναι μεταγενέστερη της πραγματικής.</span>
+        </li>
+        <li class="d-flex align-items-start mb-3">
+          <span class="text-primary me-2">•</span>
+          <span>Όλα τα εντάλματα ενδέχεται να εμφανιστούν στον πίνακα με καθυστέρηση μερικών ημερών από την ημερομηνία εξόφλησής τους.</span>
+        </li>
+        <li class="d-flex align-items-start">
+          <span class="text-primary me-2">•</span>
+          <span>Δεν επισημαίνεται στον πίνακα αν κάποιο ΧΕΠ έχει εξοφληθεί μέσω ΔΟΥ/ΚΕΦΟΔΕ. Επίσης, το εμφανιζόμενο πληρωτέο ποσό αποτελεί την τελική αξία του ΧΕΠ, ανεξαρτήτως αν έχει παρακρατηθεί μέρος αυτού από την εφορία.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+@if (noData) {
+  <div class="container text-center animate-slide alert alert-warning mt-4">
+      Δεν βρέθηκαν δεδομένα για το έτος που ζητήσατε
+  </div>
+}
+
+@if (results.length > 0) {
+
+  <div class="container-fluid text-center mt-5 animate-slide">
+    <h2>Ανάλυση Εξοφλημένων Ενταλμάτων</h2>
+
+    <div class="d-flex justify-content-center">
+      <div class="table-container">
+
+          <table class="table table-striped table-bordered mt-3 w-auto">
+            <thead>
+              <tr class="sticky-header table-primary">
+                <th>Φορέας</th>
+                <th>'Ετος</th>
+                <th>Αρ.Εντάλματος</th>
+                <th>Κωδ.Προμ</th>
+                <th>ΑΦΜ</th>
+                <th>Ημερ. Εξόφλησης</th>
+                <th>Ενεχυρίαση</th>
+                <th>Αρ. Παραστατικού</th>
+                <th>Ημερ. Παραστατικού</th>
+                <th>Μικτό Ποσό</th>
+                <th>ΦΕ 4%</th>
+                <th>ΦΕ 8%</th>
+                <th>ΦΕ 3%</th>
+                <th>ΦΕ 20%</th>
+                <th>Συνολ. Κρατήσεις</th>
+                <th>Πληρωτέο Ποσό</th>
+              </tr>
+            </thead>
+            <tbody>
+                @for (group of groupByEntalma(); track group) {
+                    
+                    @for (row of group.items; track row) {
+                        <tr>
+                            <td>{{ row['Φορέας'] }}</td>
+                            <td>{{ row['Έτος'] }}</td>
+                            <td>{{ row['Αρ. Εντάλματος'] }}</td>
+                            <td>{{ row['Κωδ.Προμηθευτή'] }}</td>
+                            <td>{{ row['Α.Φ.Μ'] }}</td>
+                            <td>{{ row['Ημ.Εξόφλησ'] }}</td>
+                            <td>{{ getFactoringLabel(row['Δικαιούχος Πληρ.']) }}</td>
+                            <td>{{ row['Αρ. Παραστατικού'] }}</td>
+                            <td>{{ row['Ημ/νία Παραστ/κού'] }}</td>
+                            <td class="text-end">{{ parseGreekNumber(row['Συνολική Αξία']) | currency:'':'': '1.2-2' }}</td>
+                            <td class="text-end">{{ parseGreekNumber(row['ΦΟΡΟΣ (4%)']) | currency:'':'': '1.2-2' }}</td>
+                            <td class="text-end">{{ parseGreekNumber(row['ΦΟΡΟΣ (8%)']) | currency:'':'': '1.2-2' }}</td>
+                            <td class="text-end">{{ parseGreekNumber(row['ΦΟΡΟΣ (3%)']) | currency:'':'': '1.2-2' }}</td>
+                            <td class="text-end">{{ parseGreekNumber(row['ΦΟΡΟΣ (20%']) | currency:'':'': '1.2-2' }}</td>
+                            <td class="text-end">{{ parseGreekNumber(row['Σύνολο Κρατήσεων']) | currency:'':'': '1.2-2' }}</td>
+                            <td class="text-end">{{ parseGreekNumber(row['Πληρωτέα Αξία']) | currency:'':'': '1.2-2' }}</td>
+                        </tr>
+                    }
+                        <!-- Subtotal row for the group -->
+                    <tr class="table-secondary text-end my-fw">
+                        <td class="text-start ps-4" colspan="9" >{{ group.entalma }}</td>
+                        <td>{{ group.subtotals['Συνολική Αξία'] | currency:'':'': '1.2-2' }}</td>
+                        <td>{{ group.subtotals['ΦΟΡΟΣ (4%)'] | currency:'':'': '1.2-2' }}</td>
+                        <td>{{ group.subtotals['ΦΟΡΟΣ (8%)'] | currency:'':'': '1.2-2' }}</td>
+                        <td>{{ group.subtotals['ΦΟΡΟΣ (3%)'] | currency:'':'': '1.2-2' }}</td>
+                        <td>{{ group.subtotals['ΦΟΡΟΣ (20%'] | currency:'':'': '1.2-2' }}</td>
+                        <td>{{ group.subtotals['Σύνολο Κρατήσεων'] | currency:'':'': '1.2-2' }}</td>
+                        <td>{{ group.subtotals['Πληρωτέα Αξία'] | currency:'':'': '1.2-2' }}</td>
+                    </tr>
+                }
+                <!-- Grand Total Row -->
+                <tr class="table-primary text-end my-fw">
+                    <td class="text-start ps-4" colspan="9">Σύνολο</td>
+                    <td>{{ calculateGrandTotal('Συνολική Αξία') | currency:'' : '' : '1.2-2' }}</td>
+                    <td>{{ calculateGrandTotal('ΦΟΡΟΣ (4%)') | currency:'' : '' : '1.2-2' }}</td>
+                    <td>{{ calculateGrandTotal('ΦΟΡΟΣ (8%)') | currency:'' : '' : '1.2-2' }}</td>
+                    <td>{{ calculateGrandTotal('ΦΟΡΟΣ (3%)') | currency:'' : '' : '1.2-2' }}</td>
+                    <td>{{ calculateGrandTotal('ΦΟΡΟΣ (20%') | currency:'' : '' : '1.2-2' }}</td>
+                    <td>{{ calculateGrandTotal('Σύνολο Κρατήσεων') | currency:'' : '' : '1.2-2' }}</td>
+                    <td>{{ calculateGrandTotal('Πληρωτέα Αξία') | currency:'' : '' : '1.2-2' }}</td>
+                </tr>
+            </tbody>
+          </table>
+        
+      </div>
+    </div>
+
+    <div class="container-fluid text-end mt-3 w-75">
+      <button (click)="downloadExcel()" class="btn btn-primary mb-4">
+        <i class="bi bi-download"></i> Download excel
+      </button>
+    </div>
+
+  </div>
+}
+
