@@ -41,7 +41,3 @@ This project is a **web application** designed to assist suppliers of **251 Gene
 - **Python** (v3.9 or higher)
 - **SQLite** (optional, for database setup)
 
-### Frontend Setup
-1. Navigate to the frontend directory:
-   ```bash
-   cd frontend
